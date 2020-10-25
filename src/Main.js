@@ -4,9 +4,11 @@ import {
     View,
     StyleSheet,
     FlatList,
-    ScrollView
+    ScrollView,
+    Image,
+    Dimensions
 } from 'react-native';
-import { NewsCard } from './components'
+import { NewsCard, HeadNews} from './components';
 
 const news_data = [
     {
@@ -100,26 +102,22 @@ const banner_data = [
     {
         id: 1,
         text: "Stocks After Amazon",
-        imageUrl:
-            'https://s.wsj.net/public/resources/MWimages/MW-GP644_MicroS_ZG_20180906154215.jpg',
+        imageUrl: 'https://s.wsj.net/public/resources/MWimages/MW-GP644_MicroS_ZG_20180906154215.jpg',
     },
     {
         id: 2,
         text: "Levi's Most Popular Jeans",
-        imageUrl:
-            'https://s.yimg.com/os/creatr-uploaded-images/2020-10/e9b733b0-09cf-11eb-bfce-a2a6e6d17fa5',
+        imageUrl: 'https://s.yimg.com/os/creatr-uploaded-images/2020-10/e9b733b0-09cf-11eb-bfce-a2a6e6d17fa5',
     },
     {
         id: 3,
         text: "Social Security Benefits?",
-        imageUrl:
-            'https://s.marketwatch.com/public/resources/images/MW-IQ535_ss_pay_ZG_20201009111853.jpg',
+        imageUrl: 'https://s.marketwatch.com/public/resources/images/MW-IQ535_ss_pay_ZG_20201009111853.jpg',
     },
     {
         id: 4,
         text: "Columbus Day and Veterans Day",
-        imageUrl:
-            'https://images.mktw.net/im-242755/social',
+        imageUrl: 'https://images.mktw.net/im-242755/social',
     },
 ];
 
@@ -132,14 +130,22 @@ const App = () => {
         );
     };
 
+    const headNews = () => {
+        return (
+            <HeadNews banner={banner_data}></HeadNews>
+        )
+    };
+
+
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <View style={{ flex: 1 }}>
                 <FlatList
                     style={{ flex: 1 }}
                     data={news_data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={renderNews}
+                    ListHeaderComponent={headNews}
                 />
             </View>
         </View>
@@ -150,6 +156,7 @@ export default App;
 
 const styles = StyleSheet.create({
     container: {
-
+        backgroundColor: '#ddd',
+        flex: 1
     },
 });
